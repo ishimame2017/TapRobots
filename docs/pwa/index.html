@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="msapplication-TileColor" content="#0288d1" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
+    />
+    <link rel="icon" type="image/png" sizes="16x16" href="./icons/TapRobots-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./icons/TapRobots-32x32.png" />
+    <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="./icons/apple-touch-icon.png" />
+    <link rel="manifest" href="./manifest.json" />
+    <link rel="shortcut icon" href="./icons/favicon.ico" />
+
+    <title>TapRobots</title>
+
+    <link rel="stylesheet" href="./TapRobots.css" />
+    <script type="module">
+     import { update_cache, user_gesture, game_init } from './TapRobots.js';
+     function init() {
+       if('serviceWorker' in navigator) {
+         navigator.serviceWorker.register('./sw.js');
+       };
+       document.querySelector("#update_cache_button1").addEventListener('click',update_cache);
+       document.querySelector("#update_cache_button2").addEventListener('click',update_cache);
+       document.querySelector("#update_cache_button3").addEventListener('click',update_cache);
+       document.querySelector("#ready_button").addEventListener('click',()=>{
+         user_gesture();
+         game_init();
+       });
+     }
+     window.addEventListener('load',init);
+    </script>
+  </head>
+  <body>
+    <!-- 以下ゲームを開始させる許可を求める画面 -->
+    <div id="game_permission">
+      <button id="update_cache_button1" type="button">update cache</button>
+      <p>ゲームを開始しても良ければ下のReadyボタンを押して下さい</p>
+      <p>(音が出るのでボリューム調整してから押しましょう)</p>
+      <button id="ready_button" type="button">Ready</button>
+    </div>
+
+    <!-- 以下ゲームが始まる前の画面(最初は非表示) -->
+    <div id="game_start">
+      <button id="update_cache_button2" type="button">update cache</button>
+      <p id="game_start_title">GAME START</p>
+      <p>下のStartボタンを押して下さい。</p>
+      <button id="start_button" type="button">Start</button>
+    </div>
+
+    <!-- 以下ゲームのメイン画面(最初は非表示) -->
+    <div id="game_main">
+      <!-- 以下ゲームの情報表示ブロック -->
+      <div id="game_info">
+        <p id="score">SCORE: 100</p>
+        <p id="time">TIME: 00:00</p>
+      </div>
+    </div>
+
+    <!-- 以下ゲームオーバー画面(最初は非表示) -->
+    <div id="game_over">
+      <button id="update_cache_button3" type="button">update cache</button>
+      <p id="game_over_title">GAME OVER</p>
+      <p id="score2">5/10</p>
+      <button id="ok_button" type="button">OK</button>
+    </div>
+  </body>
+</html>

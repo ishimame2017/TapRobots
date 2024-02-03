@@ -1,0 +1,44 @@
+body {
+    margin: 0;
+    background-color: white;
+}
+canvas {
+    display: block;
+}
+#game_permission {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    font-size: 300%;
+    text-align: center;
+    background: #ffffaa;
+}
+#game_start {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    font-size: 300%;
+    text-align: center;
+    background: #ffaaaa;
+}
+#game_main {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+#game_info {
+    color: red;
+    position: absolute;
+}
+#game_over {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    font-size: 300%;
+    text-align: center;
+    background: #aaaaff;
+}
